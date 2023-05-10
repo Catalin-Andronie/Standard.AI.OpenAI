@@ -9,6 +9,7 @@ using Standard.AI.OpenAI.Brokers.Files;
 using Standard.AI.OpenAI.Brokers.OpenAIs;
 using Standard.AI.OpenAI.Clients.AIFiles;
 using Standard.AI.OpenAI.Clients.AIModels;
+using Standard.AI.OpenAI.Clients.AudioTranscriptions;
 using Standard.AI.OpenAI.Clients.ChatCompletions;
 using Standard.AI.OpenAI.Clients.Completions;
 using Standard.AI.OpenAI.Clients.FineTunes;
@@ -36,6 +37,7 @@ namespace Standard.AI.OpenAI.Clients.OpenAIs
 
         public ICompletionsClient Completions { get; private set; }
         public IChatCompletionsClient ChatCompletions { get; private set; }
+        public IAudioTranscriptionsClient AudioTranscriptions { get; private set; }
         public IImageGenerationsClient ImageGenerations { get; private set; }
         public IAIModelsClient AIModels { get; private set; }
         public IAIFilesClient AIFiles { get; private set; }
@@ -45,6 +47,7 @@ namespace Standard.AI.OpenAI.Clients.OpenAIs
         {
             Completions = serviceProvider.GetRequiredService<ICompletionsClient>();
             ChatCompletions = serviceProvider.GetRequiredService<IChatCompletionsClient>();
+            AudioTranscriptions = serviceProvider.GetRequiredService<IAudioTranscriptionsClient>();
             ImageGenerations = serviceProvider.GetRequiredService<IImageGenerationsClient>();
             AIModels = serviceProvider.GetRequiredService<IAIModelsClient>();
             AIFiles = serviceProvider.GetRequiredService<IAIFilesClient>();
@@ -68,6 +71,7 @@ namespace Standard.AI.OpenAI.Clients.OpenAIs
                 .AddTransient<IAIFileOrchestrationService, AIFileOrchestrationService>()
                 .AddTransient<ICompletionsClient, CompletionsClient>()
                 .AddTransient<IChatCompletionsClient, ChatCompletionsClient>()
+                .AddTransient<IAudioTranscriptionsClient, AudioTranscriptionsClient>()
                 .AddTransient<IImageGenerationsClient, ImageGenerationsClient>()
                 .AddTransient<IAIModelsClient, AIModelsClient>()
                 .AddTransient<IAIFilesClient, AIFilesClient>()
